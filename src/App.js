@@ -1,6 +1,8 @@
 import React from 'react';
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
+import './components/TodoComponents/Todo.css';
+
 const data = [
   {
     task: 'Organize Garage',
@@ -42,13 +44,28 @@ class App extends React.Component {
     })
   }
   
+  toggleDone = (id) => {
+  this.setState({
+    todo: this.state.todo.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          completed: !item.completed
+        };
+      }else{
+        return item;
+      }
+    })
+  })
+}
+
   
   // onSubmit()
   render() {
     return (
       <div>
       <TodoForm addItem={this.addItem} />
-      <TodoList todo={this.state.todo} />
+      <TodoList todo={this.state.todo} toggleDone={this.toggleDone} />
       </div>
     );
   }
@@ -56,8 +73,3 @@ class App extends React.Component {
 
 export default App;
 
-// toggleDone = (id) => {
-//   this.setState({
-//     todo: this.state.todo.map()
-//   })
-// }
