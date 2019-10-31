@@ -39,7 +39,7 @@ class App extends React.Component {
   deleteItem = () => {
     this.setState({
       todo: this.state.todo.filter(item => {
-        return item.done !== true;
+        return item.completed !== true;
       })
     })
   }
@@ -65,7 +65,7 @@ class App extends React.Component {
     return (
       <div>
       <TodoForm addItem={this.addItem} />
-      <TodoList todo={this.state.todo} toggleDone={this.toggleDone} />
+      <TodoList todo={this.state.todo} toggleDone={this.toggleDone} deleteItem={this.deleteItem} />
       </div>
     );
   }
